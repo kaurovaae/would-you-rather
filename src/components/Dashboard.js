@@ -20,7 +20,7 @@ class Dashboard extends Component {
         const questions = answeredMode ? answeredIds : unAnsweredIds;
 
         return (
-            <div className="card-container">
+            <div className="block-container">
                 <div className="dashboard-nav">
                     <div
                         className={answeredMode ? "" : "dashboard-nav-active"}

@@ -6,9 +6,9 @@ body {
 }
 
 .container {
-    max-width: 1000px;
     margin: 0 auto;
     padding: 10px;
+    max-width: 590px;
 }
 
 a {
@@ -17,20 +17,28 @@ a {
 }
 
 .btn {
+    border: 1px solid transparent;
+    border-radius: 4px;
     text-transform: uppercase;
-    margin: 35px auto;
+    margin: 16px auto 0 auto;
     padding: 10px;
-    border: 1px solid rgba(0,0,0,.29);
     cursor: pointer;
-    background: #fff;
     font-size: 16px;
-    width: 250px;
+    width: 100%;
     position: relative;
+    background: #00b6e8;
+    color: #fff;
 }
 
-.btn:hover {
-    border-color: rgba(0,0,0,.5);
+.btn:disabled {
+    opacity: 0.5;
+}
+
+.btn:hover:enabled {
+    background: #fff;
+    border-color: #00b6e8;
     text-decoration: none;
+    color: #00b6e8;
 }
 
 .btn:focus {
@@ -49,9 +57,8 @@ a {
 }
 
 .nav {
-    display: flex;
-    justify-content: center;
-    margin-top: 8px;
+    max-width: 768px;
+    margin: 8px auto 0 auto;
 }
 
 .nav > div {
@@ -62,9 +69,18 @@ a {
     margin: 0;
 }
 
+.user-nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-left: 100px;
+}
+
 .nav-item {
-    padding: 16px;
+    padding: 16px 8px;
     margin-right: 8px;
+    cursor: pointer;
+    border-radius: 8px 8px 0 0;
 }
 
 .nav-item:last-child {
@@ -98,11 +114,15 @@ li {
     margin: 16px 16px 16px 0;
 }
 
-.card-container {
+.nav-avatar {
+    height: 36px;
+    border-radius: 20px;
+    margin: 0 8px 0 16px;
+}
+
+.block-container {
     width: 100%;
-    max-width: 590px;
     display: flex;
-    margin: 0 auto;
     border: 1px solid #dad7d7;
     border-radius: 3px;
     cursor: pointer;
@@ -116,7 +136,7 @@ li {
     border-bottom: 1px solid #dad7d7;
 }
 
-.question-card-content {
+.block-content{
     padding: 16px;
     display: flex;
     align-items: center;
@@ -190,4 +210,56 @@ li {
 hr {
     border: 1px solid #00b6e8;
     margin-top: 0;
+}
+
+.container-nav {
+    border-bottom: 1px solid #dad7d7;
+}
+
+.question-content {
+    padding: 16px;
+}
+
+.new-question {
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.new-question > span {
+    text-align: center;
+    margin: 16px 0;
+    font-weight: bold;
+}
+
+.new-question > span::before,
+.new-question > span::after {
+    display: inline-block;
+    content: "";
+    border-top: 1px solid #dad7d7;
+    width: calc(50% - 28px);
+    transform: translateY(-6px);
+}
+
+.new-question > span::before {
+    margin: 0 16px 0 0;
+}
+
+.new-question > span::after {
+    margin: 0 0 0 16px;
+}
+
+.question-length {
+    text-align: right;
+    margin-top: 10px;
+    font-size: 20px;
+    color: #C3392A;
+}
+
+.new-question-option {
+    padding: 8px 12px;
+    border: 1px solid #dad7d7;
+    border-radius: 2px;
+    font-size: 16px;
 }

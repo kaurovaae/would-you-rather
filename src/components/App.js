@@ -5,6 +5,7 @@ import {connect}                        from 'react-redux';
 import LoadingBar                       from "react-redux-loading";
 import Nav                              from "./Nav";
 import Dashboard                        from '../components/Dashboard';
+import NewQuestion                      from '../components/NewQuestion';
 
 // import logo from '../logo.svg';
 
@@ -24,9 +25,10 @@ class App extends Component {
                     <hr />
                     <div className="container">
                         {!loading && (
-                            <div>
+                            <Fragment>
                                 <Route path="/" exact component={Dashboard} />
-                            </div>
+                                <Route path="/new" component={NewQuestion} />
+                            </Fragment>
                         )}
                     </div>
                 </Fragment>

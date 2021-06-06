@@ -5,15 +5,15 @@ import {Link}                           from "react-router-dom";
 
 class QuestionCard extends Component {
     render() {
-        const {question, id} = this.props;
+        const {question, id, answeredMode} = this.props;
         const {authorName, authorAvatar, optionOne} = question;
 
         return (
-            <div className="card-container">
+            <div className="block-container">
                 <div className="question-card-header">
                     {authorName} asks:
                 </div>
-                <div className="question-card-content">
+                <div className="block-content">
                     <div className="question-card-left">
                         <img
                             src={authorAvatar}
@@ -27,7 +27,7 @@ class QuestionCard extends Component {
                         <div className="question-card-short">
                             ...{optionOne.text}
                         </div>
-                        <Link className="question-card-button" to={`/question/${id}`}>
+                        <Link className="question-card-button" to={answeredMode ? `/answer/${id}` : `/question/${id}`}>
                             View Poll
                         </Link>
                     </div>
