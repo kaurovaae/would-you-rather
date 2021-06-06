@@ -1,13 +1,20 @@
 import React, {Component, Fragment}     from 'react';
 import {handleInitialData}              from "../actions/shared";
-import {BrowserRouter as Router, Route} from "react-router-dom";
+import {
+    BrowserRouter as Router,
+    Redirect,
+    Route,
+    Switch
+}                                       from "react-router-dom";
 import {connect}                        from 'react-redux';
 import LoadingBar                       from "react-redux-loading";
-import Nav                              from "./Nav";
+import Navigation                       from "./Navigation";
 import Dashboard                        from '../components/Dashboard';
 import NewQuestion                      from '../components/NewQuestion';
 import QuestionPage                     from '../components/QuestionPage';
 import AnswerPage                       from '../components/AnswerPage';
+import NotFound                         from '../components/NotFound';
+// import LeaderBoard                      from '../components/LeaderBoard';
 
 // import logo from '../logo.svg';
 
@@ -23,16 +30,19 @@ class App extends Component {
             <Router>
                 <Fragment>
                     <LoadingBar style={{backgroundColor: '#00b6e8'}} />
-                    <Nav />
+                    <Navigation />
                     <hr />
                     <div className="container">
                         {!loading && (
-                            <Fragment>
+                            <Switch>
                                 <Route path="/" exact component={Dashboard} />
-                                <Route path="/question/:id" component={QuestionPage} />
+                                <Route path="/questions/:id" component={QuestionPage} />
                                 <Route path="/answer/:id" component={AnswerPage} />
-                                <Route path="/new" component={NewQuestion} />
-                            </Fragment>
+                                <Route path="/add" component={NewQuestion} />
+                                {/*<Route path="/leaderboard" component={LeaderBoard} />*/}
+                                <Route path="/404" component={NotFound} />
+                                <Redirect to="/404" />
+                            </Switch>
                         )}
                     </div>
                 </Fragment>

@@ -2,7 +2,7 @@ import React, {Component}               from 'react';
 import {NavLink}                        from "react-router-dom";
 import {connect}                        from 'react-redux';
 
-class Nav extends Component {
+class Navigation extends Component {
     render() {
         const {authorName, authorAvatar} = this.props;
 
@@ -12,7 +12,7 @@ class Nav extends Component {
                     <NavLink to='/' exact className="nav-item" activeClassName="active">
                         Home
                     </NavLink>
-                    <NavLink to='/new' className="nav-item" activeClassName="active">
+                    <NavLink to='/add' className="nav-item" activeClassName="active">
                         New Question
                     </NavLink>
                     <NavLink to='/leader-board' className="nav-item" activeClassName="active">
@@ -45,4 +45,4 @@ const mapStateToProps = ({authedUser, users}) => {
     }
 };
 
-export default connect(mapStateToProps)(Nav);
+export default connect(mapStateToProps)(Navigation);

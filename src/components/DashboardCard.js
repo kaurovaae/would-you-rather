@@ -19,7 +19,7 @@ class DashboardCard extends Component {
                     <div className="question-card-short">
                         ...{optionOne.text}
                     </div>
-                    <Link className="question-card-button" to={answeredMode ? `/answer/${id}` : `/question/${id}`}>
+                    <Link className="question-card-button" to={answeredMode ? `/answer/${id}` : `/questions/${id}`}>
                         View Poll
                     </Link>
                 </div>

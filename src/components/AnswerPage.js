@@ -9,7 +9,7 @@ class AnswerPage extends Component {
         const {question, author, answer, questionId} = this.props;
 
         if (!answer) {
-            return <Redirect to={`/question/${questionId}`} />
+            return <Redirect to={`/questions/${questionId}`} />
         }
 
         const {name, avatarURL} = author;
