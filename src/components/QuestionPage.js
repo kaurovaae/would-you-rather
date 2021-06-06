@@ -1,9 +1,9 @@
 import React, {Component}               from 'react';
 import {connect}                        from 'react-redux';
-import {Redirect}                       from "react-router-dom";
 import {handleSaveAnswer}               from '../actions/questions';
 import QuestionCard                     from "./QuestionCard";
 import ErrorMessage                     from "./ErrorMessage";
+import Answer                           from "./Answer";
 
 class QuestionPage extends Component {
     state = {
@@ -38,17 +38,35 @@ class QuestionPage extends Component {
         }
 
         const {name, avatarURL} = author;
-        const {optionOne, optionTwo, id} = question;
+        const {optionOne, optionTwo} = question;
 
+        let content;
         if (hasAnswered) {
-            return <Redirect to={`/answer/${id}`} />
-        }
+            const firstCount = optionOne.votes.length;
+            const secondCount = optionTwo.votes.length;
+            const allCount = firstCount + secondCount;
 
-        return (
-            <QuestionCard
-                title={`${name} asks:`}
-                avatarUrl={avatarURL}
-            >
+            content = (
+                <div className="question-card-question">
+                    <h3>Results:</h3>
+                    <div className="answers">
+                        <Answer
+                            isActive={answer === "optionOne"}
+                            filled={firstCount}
+                            all={allCount}
+                            text={optionOne.text}
+                        />
+                        <Answer
+                            isActive={answer === "optionTwo"}
+                            filled={secondCount}
+                            all={allCount}
+                            text={optionTwo.text}
+                        />
+                    </div>
+                </div>
+            )
+        } else {
+            content = (
                 <form className="question-card-question" onSubmit={this.handleSubmit}>
                     <h3>Would you rather</h3>
                     <div className="question-options">
@@ -84,6 +102,15 @@ class QuestionPage extends Component {
                         Submit
                     </button>
                 </form>
+            )
+        }
+
+        return (
+            <QuestionCard
+                title={`${name} asks:`}
+                avatarUrl={avatarURL}
+            >
+                {content}
             </QuestionCard>
         );
     }

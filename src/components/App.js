@@ -12,7 +12,6 @@ import Navigation                       from "./Navigation";
 import Dashboard                        from '../components/Dashboard';
 import NewQuestion                      from '../components/NewQuestion';
 import QuestionPage                     from '../components/QuestionPage';
-import AnswerPage                       from '../components/AnswerPage';
 import NotFound                         from '../components/NotFound';
 // import LeaderBoard                      from '../components/LeaderBoard';
 
@@ -37,7 +36,6 @@ class App extends Component {
                             <Switch>
                                 <Route path="/" exact component={Dashboard} />
                                 <Route path="/questions/:id" component={QuestionPage} />
-                                <Route path="/answer/:id" component={AnswerPage} />
                                 <Route path="/add" component={NewQuestion} />
                                 {/*<Route path="/leaderboard" component={LeaderBoard} />*/}
                                 <Route path="/404" component={NotFound} />

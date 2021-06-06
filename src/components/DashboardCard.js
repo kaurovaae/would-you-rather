@@ -6,7 +6,7 @@ import QuestionCard                     from "./QuestionCard";
 
 class DashboardCard extends Component {
     render() {
-        const {question, id, answeredMode} = this.props;
+        const {question, id} = this.props;
         const {authorName, authorAvatar, optionOne} = question;
 
         return (
@@ -19,7 +19,7 @@ class DashboardCard extends Component {
                     <div className="question-card-short">
                         ...{optionOne.text}
                     </div>
-                    <Link className="question-card-button" to={answeredMode ? `/answer/${id}` : `/questions/${id}`}>
+                    <Link className="question-card-button" to={`/questions/${id}`}>
                         View Poll
                     </Link>
                 </div>

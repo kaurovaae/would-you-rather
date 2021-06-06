@@ -41,7 +41,7 @@ class Dashboard extends Component {
                     <ul>
                         {questions.map(id => (
                             <li key={id}>
-                                <DashboardCard answeredMode={answeredMode} id={id}/>
+                                <DashboardCard id={id}/>
                             </li>
                         ))}
                     </ul>
