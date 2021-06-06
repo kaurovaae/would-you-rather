@@ -19,12 +19,15 @@ class App extends Component {
         return (
             <Router>
                 <Fragment>
-                    <LoadingBar style={{backgroundColor: 'blue'}} />
-                    <div>
-                        <Nav />
-                        <div>
-                            <Route path="/" exact component={Dashboard} />
-                        </div>
+                    <LoadingBar style={{backgroundColor: '#00b6e8'}} />
+                    <Nav />
+                    <hr />
+                    <div className="container">
+                        {!loading && (
+                            <div>
+                                <Route path="/" exact component={Dashboard} />
+                            </div>
+                        )}
                     </div>
                 </Fragment>
             </Router>
@@ -32,8 +35,8 @@ class App extends Component {
     }
 }
 
-const mapStateToProps = ({questions}) => ({
-    loading: !questions.length
+const mapStateToProps = ({authedUser}) => ({
+    loading: !authedUser
 });
 
 export default connect(mapStateToProps)(App);

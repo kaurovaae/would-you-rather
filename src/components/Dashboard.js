@@ -1,18 +1,45 @@
 import React, {Component}               from 'react';
 import {connect}                        from 'react-redux';
-import Question                         from './Question';
+import QuestionCard                     from './QuestionCard';
 
 class Dashboard extends Component {
+    state = {
+        answeredMode: false
+    };
+
+    handleChangeMode = (isAnsweredMode) => {
+        this.setState(() => ({
+            answeredMode:  isAnsweredMode
+        }));
+    };
+
     render() {
-        const {questionIds} = this.props;
+        const {answeredMode} = this.state;
+        const {answeredIds, unAnsweredIds} = this.props;
+
+        const questions = answeredMode ? answeredIds : unAnsweredIds;
 
         return (
-            <div>
-                <h3 className='center'>Questions</h3>
-                <ul className='dashboard-list'>
-                    {questionIds.map(id => (
+            <div className="card-container">
+                <div className="dashboard-nav">
+                    <div
+                        className={answeredMode ? "" : "dashboard-nav-active"}
+                        onClick={() => this.handleChangeMode(false)}
+                    >
+                        Unanswered Questions
+                    </div>
+                    <div
+                        className={answeredMode ? "dashboard-nav-active" : ""}
+                        onClick={() => this.handleChangeMode(true)}
+                    >
+                        Answered Questions
+                    </div>
+                </div>
+
+                <ul>
+                    {questions.map(id => (
                         <li key={id}>
-                            <Question id={id}/>
+                            <QuestionCard answeredMode={answeredMode} id={id}/>
                         </li>
                     ))}
                 </ul>
@@ -21,9 +48,14 @@ class Dashboard extends Component {
     }
 }
 
-const mapStateToProps = ({questions}) => {
+const mapStateToProps = ({questions, users, authedUser}) => {
+    const answeredIds = Object.keys(users[authedUser].answers);
+
     return {
-        questionIds: Object.keys(questions)
+        answeredIds: answeredIds
+            .sort((a,b) => questions[b].timestamp - questions[a].timestamp),
+        unAnsweredIds: Object.keys(questions)
+            .filter(question => !answeredIds.includes(question))
             .sort((a,b) => questions[b].timestamp - questions[a].timestamp)
     }
 };
