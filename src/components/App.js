@@ -6,6 +6,8 @@ import LoadingBar                       from "react-redux-loading";
 import Nav                              from "./Nav";
 import Dashboard                        from '../components/Dashboard';
 import NewQuestion                      from '../components/NewQuestion';
+import QuestionPage                     from '../components/QuestionPage';
+import AnswerPage                       from '../components/AnswerPage';
 
 // import logo from '../logo.svg';
 
@@ -27,6 +29,8 @@ class App extends Component {
                         {!loading && (
                             <Fragment>
                                 <Route path="/" exact component={Dashboard} />
+                                <Route path="/question/:id" component={QuestionPage} />
+                                <Route path="/answer/:id" component={AnswerPage} />
                                 <Route path="/new" component={NewQuestion} />
                             </Fragment>
                         )}
