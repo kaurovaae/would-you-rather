@@ -111,7 +111,7 @@ li {
 .avatar {
     height: 140px;
     border-radius: 25px;
-    margin: 16px 16px 16px 0;
+    margin-right: 16px;
 }
 
 .nav-avatar {
@@ -160,7 +160,7 @@ li {
     display: flex;
     flex-direction: column;
     flex: 2 0;
-    padding: 0 16px 0 32px;
+    padding: 0 16px 0 24px;
     border-left: 1px solid #dad7d7;
 }
 
