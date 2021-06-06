@@ -51,11 +51,6 @@ a {
     text-align: center;
 }
 
-.active {
-    background: #00b6e8;
-    color: #fff;
-}
-
 .nav {
     max-width: 768px;
     margin: 8px auto 0 auto;
@@ -87,7 +82,7 @@ a {
     margin-right: 0;
 }
 
-.nav-item:hover {
+.nav-item:hover, .active {
     background: #00b6e8;
     color: #fff;
 }

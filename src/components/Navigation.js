@@ -1,6 +1,7 @@
 import React, {Component}               from 'react';
 import {NavLink}                        from "react-router-dom";
 import {connect}                        from 'react-redux';
+import {withRouter}                     from "react-router-dom";
 
 class Navigation extends Component {
     render() {
@@ -45,4 +46,4 @@ const mapStateToProps = ({authedUser, users}) => {
     }
 };
 
-export default connect(mapStateToProps)(Navigation);
+export default withRouter(connect(mapStateToProps)(Navigation));
