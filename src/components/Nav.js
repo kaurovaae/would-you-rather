@@ -23,7 +23,7 @@ class Nav extends Component {
                             <span>Hello, {authorName}</span>
                             <img
                                 src={authorAvatar}
-                                alt={`Avatar of ${authorName}`}
+                                alt="avatar"
                                 className="nav-avatar"
                             />
                             <div className="nav-item">

@@ -109,7 +109,7 @@ li {
 }
 
 .avatar {
-    height: 120px;
+    height: 140px;
     border-radius: 25px;
     margin: 16px 16px 16px 0;
 }
@@ -125,7 +125,6 @@ li {
     display: flex;
     border: 1px solid #dad7d7;
     border-radius: 3px;
-    cursor: pointer;
     flex-direction: column;
 }
 
@@ -143,16 +142,10 @@ li {
 }
 
 .question-card-left {
-    flex: 2 0;
+    flex: 1 0;
     display: flex;
     align-items: center;
     justify-content: space-evenly;
-}
-
-.question-card-left > span {
-    height: 100%;
-    min-height: 140px;
-    border-left: 1px solid #dad7d7;
 }
 
 .question-card-short {
@@ -166,8 +159,9 @@ li {
 .question-card-question {
     display: flex;
     flex-direction: column;
-    flex: 3 0;
-    padding: 0 16px;
+    flex: 2 0;
+    padding: 0 16px 0 32px;
+    border-left: 1px solid #dad7d7;
 }
 
 .question-card-question > h3 {
@@ -201,6 +195,7 @@ li {
     text-align: center;
     padding: 16px;
     font-weight: 500;
+    cursor: pointer;
 }
 
 .dashboard-nav > div:first-child {
@@ -282,4 +277,79 @@ hr {
 .question-options > div > label {
     cursor: pointer;
     margin-left: 4px;
+}
+
+.answers {
+    display: flex;
+    flex-direction: column;
+}
+
+.answers > div {
+    padding: 16px;
+    border-radius: 4px;
+    margin-bottom: 24px;
+    background-color: #f2f2f7;
+    border: 1px solid #dad7d7;
+}
+
+.answers > div:last-child {
+    margin-bottom: 16px;
+}
+
+.answers > div > span {
+    font-weight: bold;
+}
+
+.answers > .selected-answer {
+    background-color: rgba(0, 182, 232, 0.11);
+    color: #00b6e8;
+    border-color: #00b6e8;
+    position: relative;
+}
+
+.progress-bar {
+    text-align: center;
+    margin-top: 16px;
+}
+
+.line {
+    position: relative;
+    background: #dad7d7;
+    border-radius: 4px;
+    margin-bottom: 8px;
+    height: 28px;
+}
+
+.line > span {
+    position: absolute;
+    color: #fff;
+    top: 5px;
+}
+
+.filled {
+    background-color: #00b6e8;
+    height: 28px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    border-radius: 4px;
+}
+
+.vote {
+    position: absolute;
+    right: -22px;
+    top: -22px;
+    background: #ffc42d;
+    width: 44px;
+    height: 44px;
+    border-radius: 50px;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    font-size: 14px;
+}
+
+.error-block {
+    padding: 16px;
 }

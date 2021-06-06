@@ -1,6 +1,7 @@
 import React, {Component}               from 'react';
 import {connect}                        from 'react-redux';
-import QuestionCard                     from './QuestionCard';
+import DashboardCard                    from './DashboardCard';
+import ErrorMessage                     from "./ErrorMessage";
 
 class Dashboard extends Component {
     state = {
@@ -36,13 +37,20 @@ class Dashboard extends Component {
                     </div>
                 </div>
 
-                <ul>
-                    {questions.map(id => (
-                        <li key={id}>
-                            <QuestionCard answeredMode={answeredMode} id={id}/>
-                        </li>
-                    ))}
-                </ul>
+                {!!questions.length ? (
+                    <ul>
+                        {questions.map(id => (
+                            <li key={id}>
+                                <DashboardCard answeredMode={answeredMode} id={id}/>
+                            </li>
+                        ))}
+                    </ul>
+                ) : (
+                    <ErrorMessage
+                        title="No questions"
+                        message="There are no questions yet. Please, try again later."
+                    />
+                )}
             </div>
         )
     }
