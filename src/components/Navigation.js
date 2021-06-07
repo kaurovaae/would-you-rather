@@ -16,7 +16,7 @@ class Navigation extends Component {
                     <NavLink to='/add' className="nav-item" activeClassName="active">
                         New Question
                     </NavLink>
-                    <NavLink to='/leader-board' className="nav-item" activeClassName="active">
+                    <NavLink to='/leaderboard' className="nav-item" activeClassName="active">
                         Leader Board
                     </NavLink>
                     {authorName && (

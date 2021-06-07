@@ -6,7 +6,7 @@ const QuestionCard = (props) => {
 
     return (
         <div className="block-container">
-            <div className="question-card-header">
+            <div className="card-header">
                 {title}
             </div>
             <div className="block-content">

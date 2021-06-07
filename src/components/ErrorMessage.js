@@ -7,7 +7,7 @@ const ErrorMessage = (props) => {
     return (
         <div className="error-block">
             <div className="block-container">
-            <span className="question-card-header">
+            <span className="card-header">
                 {title}
             </span>
                 <div className="block-content">

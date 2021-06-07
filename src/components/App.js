@@ -13,7 +13,7 @@ import Dashboard                        from '../components/Dashboard';
 import NewQuestion                      from '../components/NewQuestion';
 import QuestionPage                     from '../components/QuestionPage';
 import NotFound                         from '../components/NotFound';
-// import LeaderBoard                      from '../components/LeaderBoard';
+import LeaderBoard                      from '../components/LeaderBoard';
 
 // import logo from '../logo.svg';
 
@@ -37,7 +37,7 @@ class App extends Component {
                                 <Route path="/" exact component={Dashboard} />
                                 <Route path="/questions/:id" component={QuestionPage} />
                                 <Route path="/add" component={NewQuestion} />
-                                {/*<Route path="/leaderboard" component={LeaderBoard} />*/}
+                                <Route path="/leaderboard" component={LeaderBoard} />
                                 <Route path="/404" component={NotFound} />
                                 <Redirect to="/404" />
                             </Switch>
