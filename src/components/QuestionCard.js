@@ -10,7 +10,7 @@ const QuestionCard = (props) => {
                 {title}
             </div>
             <div className="block-content">
-                <div className="question-card-left">
+                <div className="block-left">
                     <img
                         src={avatarUrl}
                         alt="avatar"

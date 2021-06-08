@@ -6,6 +6,7 @@ import {
     Route,
     Switch
 }                                       from "react-router-dom";
+import UserRoute                        from "./UserRoute";
 import {connect}                        from 'react-redux';
 import LoadingBar                       from "react-redux-loading";
 import Navigation                       from "./Navigation";
@@ -14,8 +15,7 @@ import NewQuestion                      from '../components/NewQuestion';
 import QuestionPage                     from '../components/QuestionPage';
 import NotFound                         from '../components/NotFound';
 import LeaderBoard                      from '../components/LeaderBoard';
-
-// import logo from '../logo.svg';
+import Login                            from '../components/Login';
 
 class App extends Component {
     componentDidMount() {
@@ -23,8 +23,6 @@ class App extends Component {
     }
 
     render() {
-        const {loading} = this.props;
-
         return (
             <Router>
                 <Fragment>
@@ -32,16 +30,15 @@ class App extends Component {
                     <Navigation />
                     <hr />
                     <div className="container">
-                        {!loading && (
-                            <Switch>
-                                <Route path="/" exact component={Dashboard} />
-                                <Route path="/questions/:id" component={QuestionPage} />
-                                <Route path="/add" component={NewQuestion} />
-                                <Route path="/leaderboard" component={LeaderBoard} />
-                                <Route path="/404" component={NotFound} />
-                                <Redirect to="/404" />
-                            </Switch>
-                        )}
+                        <Switch>
+                            <UserRoute path="/" exact component={Dashboard} />
+                            <UserRoute path="/questions/:id" component={QuestionPage} />
+                            <UserRoute path="/add" component={NewQuestion} />
+                            <UserRoute path="/leaderboard" component={LeaderBoard} />
+                            <UserRoute path="/404" component={NotFound} />
+                            <Route path="/login" component={Login} />
+                            <Redirect to="/404" />
+                        </Switch>
                     </div>
                 </Fragment>
             </Router>
@@ -49,8 +46,4 @@ class App extends Component {
     }
 }
 
-const mapStateToProps = ({authedUser}) => ({
-    loading: !authedUser
-});
-
-export default connect(mapStateToProps)(App);
+export default connect()(App);

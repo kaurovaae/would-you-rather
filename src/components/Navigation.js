@@ -2,8 +2,15 @@ import React, {Component}               from 'react';
 import {NavLink}                        from "react-router-dom";
 import {connect}                        from 'react-redux';
 import {withRouter}                     from "react-router-dom";
+import {handleLogout}                   from '../actions/authedUser';
 
 class Navigation extends Component {
+
+    handleLogout = (e) => {
+        e.preventDefault();
+        this.props.dispatch(handleLogout());
+    };
+
     render() {
         const {authorName, authorAvatar} = this.props;
 
@@ -27,7 +34,7 @@ class Navigation extends Component {
                                 alt="avatar"
                                 className="nav-avatar"
                             />
-                            <div className="nav-item">
+                            <div className="nav-item" onClick={this.handleLogout}>
                                 Logout
                             </div>
                         </div>
