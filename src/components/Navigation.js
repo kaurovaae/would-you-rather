@@ -8,7 +8,9 @@ class Navigation extends Component {
 
     handleLogout = (e) => {
         e.preventDefault();
+
         this.props.dispatch(handleLogout());
+        this.props.history.push('/');
     };
 
     render() {
