@@ -25,6 +25,10 @@ class NewQuestion extends Component {
         const {optionOneText, optionTwoText} = this.state;
         const {dispatch, id} = this.props;
 
+        if (optionOneText === '' || optionTwoText === '') {
+            return;
+        }
+
         dispatch(handleAddQuestion(optionOneText, optionTwoText));
 
         this.setState(() => ({

@@ -9,8 +9,7 @@ import reactLogo                            from '../logo.svg';
 
 class Login extends Component {
     state = {
-        selectedUser: 'none',
-        error: ''
+        selectedUser: 'none'
     };
 
     selectUser = (e) => {
@@ -19,8 +18,7 @@ class Login extends Component {
         const selectedUser = e.target.value;
 
         this.setState(() => ({
-            selectedUser,
-            error: ''
+            selectedUser
         }))
     };
 
@@ -30,10 +28,6 @@ class Login extends Component {
         const {selectedUser} = this.state;
 
         if (selectedUser === 'none') {
-            this.setState((prevState) => ({
-                ...prevState,
-                error: 'Please, select User'
-            }));
             return;
         }
 
@@ -44,7 +38,7 @@ class Login extends Component {
     };
 
     render() {
-        const {selectedUser, error} = this.state;
+        const {selectedUser} = this.state;
         const {isAuthed, next, users} = this.props;
 
         if (isAuthed) {
@@ -82,7 +76,6 @@ class Login extends Component {
                         >
                             Sign In
                         </button>
-                        <div className="error">{error}</div>
                     </div>
                 </div>
             </div>
