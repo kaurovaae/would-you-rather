@@ -431,3 +431,8 @@ hr {
     display: flex;
     flex-direction: column;
 }
+
+.error {
+    color: rgba(172, 5, 20, 0.95);
+    margin: 16px 0;
+}

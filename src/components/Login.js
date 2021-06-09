@@ -4,12 +4,20 @@ import {Redirect}                           from "react-router-dom";
 import {handleLogin}                        from "../actions/authedUser";
 import {withRouter}                         from "react-router-dom";
 import getQueryParams                       from "../utils/getQueryParams";
+import {handleClearError}                   from '../actions/error';
 
 import reactLogo                            from '../logo.svg';
 
+const STEP = {
+    LOGIN: 'login',
+    PASSWORD: 'password'
+};
+
 class Login extends Component {
     state = {
-        selectedUser: 'none'
+        selectedUser: 'none',
+        password: '',
+        step: STEP.LOGIN
     };
 
     selectUser = (e) => {
@@ -17,8 +25,22 @@ class Login extends Component {
 
         const selectedUser = e.target.value;
 
-        this.setState(() => ({
+        this.setState((prevState) => ({
+            ...prevState,
             selectedUser
+        }));
+
+        this.props.dispatch(handleClearError());
+    };
+
+    handleChange = (e) => {
+        e.preventDefault();
+
+        const password = e.target.value;
+
+        this.setState((prevState) => ({
+            ...prevState,
+            password
         }))
     };
 
@@ -31,19 +53,36 @@ class Login extends Component {
             return;
         }
 
+        this.setState((prevState) => ({
+            ...prevState,
+            step: STEP.PASSWORD
+        }));
+    };
+
+    handleSubmit = (e) => {
+        e.preventDefault();
+
+        const {selectedUser, password} = this.state;
+
+        if (password === '') {
+            return;
+        }
+
         const {dispatch, history, next} = this.props;
 
-        dispatch(handleLogin(selectedUser));
+        dispatch(handleLogin(selectedUser, password));
         history.push(next);
     };
 
     render() {
-        const {selectedUser} = this.state;
-        const {isAuthed, next, users} = this.props;
+        const {selectedUser, password, step} = this.state;
+        const {isAuthed, next, users, error, loading} = this.props;
 
         if (isAuthed) {
             return <Redirect to={next} />
         }
+
+        const isLoginStep = step === STEP.LOGIN;
 
         return (
             <div className="block-container">
@@ -59,31 +98,40 @@ class Login extends Component {
                             className="avatar"
                         />
                     </div>
-                    <div className="login-content">
+                    <form className="login-content" onSubmit={isLoginStep ? this.handleLogin : this.handleSubmit}>
                         <h3>Sign In</h3>
-                        <select value={selectedUser} onChange={this.selectUser}>
-                            <option value='none'>Select User</option>
-                            {users.map(user => (
-                                <option key={user.id} value={user.id}>
-                                    {user.name}
-                                </option>
-                            ))}
-                        </select>
+                        {isLoginStep ? (
+                            <select value={selectedUser} onChange={this.selectUser} disabled={loading}>
+                                <option value='none'>Select User</option>
+                                {users.map(user => (
+                                    <option key={user.id} value={user.id}>
+                                        {user.name}
+                                    </option>
+                                ))}
+                            </select>
+                        ) : (
+                            <input
+                                placeholder="Enter password"
+                                value={password}
+                                onChange={this.handleChange}
+                            />
+                        )}
                         <button
                             className="btn"
-                            onClick={this.handleLogin}
-                            disabled={selectedUser === "none"}
+                            type="submit"
+                            disabled={(!isLoginStep && password === '') || (isLoginStep && selectedUser === "none") || loading}
                         >
                             Sign In
                         </button>
-                    </div>
+                        <div className="error">{error}</div>
+                    </form>
                 </div>
             </div>
         )
     }
 }
 
-const mapStateToProps = ({authedUser, users}, props) => {
+const mapStateToProps = ({authedUser, users, error, loadingBar}, props) => {
     const searchQuery = props.location && props.location.search;
     const query = getQueryParams(searchQuery);
 
@@ -94,7 +142,9 @@ const mapStateToProps = ({authedUser, users}, props) => {
         users: Object.keys(users).map(id => ({
             id,
             name: users[id].name
-        }))
+        })),
+        error,
+        loading: loadingBar.default === 1
     }
 };
 

@@ -34,6 +34,12 @@ let users = {
     }
 };
 
+let passwords = {
+    sarahedo: "sepass",
+    tylermcginnis: "tmgpass",
+    johndoe: "jdpass"
+};
+
 let questions = {
     "8xf0y6ziyjabvozdd253nd": {
         id: '8xf0y6ziyjabvozdd253nd',
@@ -122,6 +128,12 @@ function generateUID () {
 export function _getUsers () {
     return new Promise((res, rej) => {
         setTimeout(() => res({...users}), 1000)
+    })
+}
+
+export function _checkPassword (login, password) {
+    return new Promise((res, rej) => {
+        setTimeout(() => res(passwords[login] && passwords[login] === password), 1000)
     })
 }
 

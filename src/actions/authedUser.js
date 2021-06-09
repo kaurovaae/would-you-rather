@@ -1,3 +1,7 @@
+import {checkPassword}              from '../utils/api';
+import {hideLoading, showLoading}   from "react-redux-loading";
+import {setError}                   from "./error";
+
 export const SET_AUTHED_USER = 'SET_AUTHED_USER';
 
 export function setAuthedUser(id) {
@@ -7,9 +11,19 @@ export function setAuthedUser(id) {
     }
 }
 
-export function handleLogin(userId) {
+export function handleLogin(userId, password) {
     return (dispatch) => {
-        dispatch(setAuthedUser(userId));
+        dispatch(showLoading());
+        return checkPassword(userId, password)
+            .then((isValid) => {
+                if (isValid) {
+                    dispatch(setAuthedUser(userId));
+                    dispatch(setError(null));
+                } else {
+                    dispatch(setError('Incorrect password. Please, try again.'));
+                }
+                dispatch(hideLoading());
+            })
     }
 }
 
