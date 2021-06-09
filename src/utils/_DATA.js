@@ -131,7 +131,7 @@ export function _getUsers () {
     })
 }
 
-export function _checkPassword (login, password) {
+export function _checkPassword ({login, password}) {
     return new Promise((res, rej) => {
         setTimeout(() => res(passwords[login] && passwords[login] === password), 1000)
     })
@@ -161,7 +161,7 @@ function formatQuestion ({ optionOneText, optionTwoText, author }) {
 
 export function _saveQuestion (question) {
     return new Promise((res, rej) => {
-        const authedUser = question.author;
+        const author = question.author;
         const formattedQuestion = formatQuestion(question);
 
         setTimeout(() => {
@@ -172,9 +172,9 @@ export function _saveQuestion (question) {
 
             users = {
                 ...users,
-                [authedUser]: {
-                    ...users[authedUser],
-                    questions: users[authedUser].questions.concat([formattedQuestion.id])
+                [author]: {
+                    ...users[author],
+                    questions: users[author].questions.concat([formattedQuestion.id])
                 }
             };
 
@@ -210,5 +210,37 @@ export function _saveQuestionAnswer ({ authedUser, qid, answer }) {
 
             res()
         }, 500)
+    })
+}
+
+function formatUser ({name}) {
+    return {
+        id: generateUID(),
+        name: name,
+        avatarURL: "../../images/default.png",
+        answers: {},
+        questions: []
+    }
+}
+
+export function _addNewUser (user) {
+    return new Promise((res, rej) => {
+        const formattedUser = formatUser(user);
+
+        setTimeout(() => {
+            users = {
+                ...users,
+                [formattedUser.id]: {
+                    ...formattedUser
+                }
+            };
+
+            passwords = {
+                ...passwords,
+                [formattedUser.id]: user.password
+            };
+
+            res(formattedUser)
+        }, 1000)
     })
 }

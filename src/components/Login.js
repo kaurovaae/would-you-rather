@@ -1,88 +1,44 @@
 import React, {Component}                   from 'react';
 import {connect}                            from 'react-redux';
 import {Redirect}                           from "react-router-dom";
-import {handleLogin}                        from "../actions/authedUser";
-import {withRouter}                         from "react-router-dom";
 import getQueryParams                       from "../utils/getQueryParams";
-import {handleClearError}                   from '../actions/error';
+import LoginForm                            from "./LoginForm";
+import RegisterForm                         from "./RegisterForm";
+import {handleClearError}                   from "../actions/error";
 
 import reactLogo                            from '../logo.svg';
 
 const STEP = {
     LOGIN: 'login',
-    PASSWORD: 'password'
+    REGISTRATION: 'registration'
 };
 
 class Login extends Component {
     state = {
-        selectedUser: 'none',
-        password: '',
         step: STEP.LOGIN
     };
 
-    selectUser = (e) => {
-        e.preventDefault();
-
-        const selectedUser = e.target.value;
-
-        this.setState((prevState) => ({
-            ...prevState,
-            selectedUser
+    handleRegister = () => {
+        this.setState(() => ({
+            step: STEP.REGISTRATION
         }));
-
         this.props.dispatch(handleClearError());
     };
 
-    handleChange = (e) => {
-        e.preventDefault();
-
-        const password = e.target.value;
-
-        this.setState((prevState) => ({
-            ...prevState,
-            password
-        }))
-    };
-
-    handleLogin = (e) => {
-        e.preventDefault();
-
-        const {selectedUser} = this.state;
-
-        if (selectedUser === 'none') {
-            return;
-        }
-
-        this.setState((prevState) => ({
-            ...prevState,
-            step: STEP.PASSWORD
+    handleLogin = () => {
+        this.setState(() => ({
+            step: STEP.LOGIN
         }));
-    };
-
-    handleSubmit = (e) => {
-        e.preventDefault();
-
-        const {selectedUser, password} = this.state;
-
-        if (password === '') {
-            return;
-        }
-
-        const {dispatch, history, next} = this.props;
-
-        dispatch(handleLogin(selectedUser, password));
-        history.push(next);
+        this.props.dispatch(handleClearError());
     };
 
     render() {
-        const {selectedUser, password, step} = this.state;
-        const {isAuthed, next, users, error, loading} = this.props;
+        const {step} = this.state;
+        const {isAuthed, next} = this.props;
 
         if (isAuthed) {
             return <Redirect to={next} />
         }
-
-        const isLoginStep = step === STEP.LOGIN;
 
         return (
             <div className="block-container">
@@ -98,33 +54,20 @@ class Login extends Component {
                             className="avatar"
                         />
                     </div>
-                    <form className="login-content" onSubmit={isLoginStep ? this.handleLogin : this.handleSubmit}>
-                        <h3>Sign In</h3>
-                        {isLoginStep ? (
-                            <select value={selectedUser} onChange={this.selectUser} disabled={loading}>
-                                <option value='none'>Select User</option>
-                                {users.map(user => (
-                                    <option key={user.id} value={user.id}>
-                                        {user.name}
-                                    </option>
-                                ))}
-                            </select>
-                        ) : (
-                            <input
-                                placeholder="Enter password"
-                                value={password}
-                                onChange={this.handleChange}
-                            />
-                        )}
-                        <button
-                            className="btn"
-                            type="submit"
-                            disabled={(!isLoginStep && password === '') || (isLoginStep && selectedUser === "none") || loading}
-                        >
-                            Sign In
-                        </button>
-                        <div className="error">{error}</div>
-                    </form>
+                    {step === STEP.LOGIN && (
+                        <div className="login-content">
+                            <LoginForm />
+                            <span>New to WYR? </span>
+                            <button onClick={this.handleRegister}>Create new account</button>
+                        </div>
+                    )}
+                    {step === STEP.REGISTRATION && (
+                        <div className="login-content">
+                            <RegisterForm />
+                            <span>Already have an account?</span>
+                            <button onClick={this.handleLogin}>Sign in</button>
+                        </div>
+                    )}
                 </div>
             </div>
         )
@@ -136,16 +79,9 @@ const mapStateToProps = ({authedUser, users, error, loadingBar}, props) => {
     const query = getQueryParams(searchQuery);
 
     return {
-        ...props,
         isAuthed: authedUser,
-        next: query && query.next,
-        users: Object.keys(users).map(id => ({
-            id,
-            name: users[id].name
-        })),
-        error,
-        loading: loadingBar.default === 1
+        next: query && query.next
     }
 };
 
-export default withRouter(connect(mapStateToProps)(Login));
+export default connect(mapStateToProps)(Login);

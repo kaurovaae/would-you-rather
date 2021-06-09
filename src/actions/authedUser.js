@@ -11,13 +11,13 @@ export function setAuthedUser(id) {
     }
 }
 
-export function handleLogin(userId, password) {
+export function handleLogin(login, password) {
     return (dispatch) => {
         dispatch(showLoading());
-        return checkPassword(userId, password)
+        return checkPassword({login, password})
             .then((isValid) => {
                 if (isValid) {
-                    dispatch(setAuthedUser(userId));
+                    dispatch(setAuthedUser(login));
                     dispatch(setError(null));
                 } else {
                     dispatch(setError('Incorrect password. Please, try again.'));
