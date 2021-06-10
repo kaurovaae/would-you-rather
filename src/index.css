@@ -455,3 +455,7 @@ hr {
     justify-content: space-around;
     margin-bottom: 24px;
 }
+
+.empty {
+    margin: 16px 0;
+}

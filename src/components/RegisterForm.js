@@ -108,6 +108,7 @@ class RegisterForm extends Component {
                 >
                     Continue
                 </button>
+                <div className="empty" />
             </form>
         )
     }
