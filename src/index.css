@@ -267,11 +267,15 @@ hr {
     color: #C3392A;
 }
 
-.new-question-option {
+.input, .password, .repeat {
     padding: 8px 12px;
     border: 1px solid #dad7d7;
     border-radius: 2px;
     font-size: 16px;
+}
+
+.password {
+    margin-bottom: 16px;
 }
 
 .question-options {

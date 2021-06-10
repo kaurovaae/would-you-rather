@@ -77,7 +77,7 @@ class LoginForm extends Component {
             <form className="login-content" onSubmit={isLoginStep ? this.handleLogin : this.handleSubmit}>
                 <h3>Sign In</h3>
                 {isLoginStep ? (
-                    <select value={selectedUser} onChange={this.selectUser} disabled={loading}>
+                    <select className="input" value={selectedUser} onChange={this.selectUser} disabled={loading}>
                         <option value='none'>Select User</option>
                         {users.map(user => (
                             <option key={user.id} value={user.id}>
@@ -91,6 +91,8 @@ class LoginForm extends Component {
                         value={password}
                         onChange={this.handleChange}
                         autoComplete="off"
+                        className="input"
+                        type="password"
                     />
                 )}
                 <button

@@ -63,7 +63,7 @@ class NewQuestion extends Component {
                             value={optionOneText}
                             onChange={this.handleChange}
                             maxLength={80}
-                            className="new-question-option"
+                            className="input"
                             autoComplete="off"
                         />
                         {optionOneLeft <= 24 && (
@@ -78,7 +78,7 @@ class NewQuestion extends Component {
                             value={optionTwoText}
                             onChange={this.handleChange}
                             maxLength={80}
-                            className="new-question-option"
+                            className="input"
                             autoComplete="off"
                         />
                         {optionTwoLeft <= 24 && (

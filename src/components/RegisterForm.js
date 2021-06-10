@@ -1,4 +1,4 @@
-import React, {Component}                   from 'react';
+import React, {Component, Fragment} from 'react';
 import {connect}                            from 'react-redux';
 import {handleAddUser}                      from "../actions/users";
 import {handleClearError}                   from "../actions/error";
@@ -12,6 +12,7 @@ class RegisterForm extends Component {
     state = {
         name: '',
         password: '',
+        repeatPassword: '',
         step: STEP.LOGIN
     };
 
@@ -47,9 +48,9 @@ class RegisterForm extends Component {
     handleSubmit = (e) => {
         e.preventDefault();
 
-        const {name, password} = this.state;
+        const {name, password, repeatPassword} = this.state;
 
-        if (password === '') {
+        if (password === '' || password !== repeatPassword) {
             return;
         }
 
@@ -57,7 +58,7 @@ class RegisterForm extends Component {
     };
 
     render() {
-        const {name, password, step} = this.state;
+        const {name, password, repeatPassword, step} = this.state;
         const {error, loading} = this.props;
 
         const isLoginStep = step === STEP.LOGIN;
@@ -72,20 +73,34 @@ class RegisterForm extends Component {
                         value={name}
                         onChange={this.handleChange}
                         autoComplete="off"
+                        className="input"
                     />
                 ) : (
-                    <input
-                        placeholder="Enter password"
-                        name="password"
-                        value={password}
-                        onChange={this.handleChange}
-                        autoComplete="off"
-                    />
+                    <Fragment>
+                        <input
+                            placeholder="Enter password"
+                            name="password"
+                            value={password}
+                            onChange={this.handleChange}
+                            autoComplete="off"
+                            className="password"
+                            type="password"
+                        />
+                        <input
+                            placeholder="Repeat password"
+                            name="repeatPassword"
+                            value={repeatPassword}
+                            onChange={this.handleChange}
+                            autoComplete="off"
+                            className="repeat"
+                            type="password"
+                        />
+                    </Fragment>
                 )}
                 <button
                     className="btn"
                     type="submit"
-                    disabled={(!isLoginStep && password === '') || (isLoginStep && name === '') || loading}
+                    disabled={(!isLoginStep && password === '') || (isLoginStep && name === '') || loading || password !== repeatPassword}
                 >
                     Continue
                 </button>
