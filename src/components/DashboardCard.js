@@ -3,6 +3,7 @@ import {connect}                        from 'react-redux';
 import {formatQuestion}                 from '../utils/helpers';
 import {Link}                           from "react-router-dom";
 import QuestionCard                     from "./QuestionCard";
+import PropTypes                        from "prop-types";
 
 class DashboardCard extends Component {
     render() {
@@ -37,6 +38,10 @@ const mapStateToProps = ({questions, users, authedUser}, {id}) => {
             ? formatQuestion(question, users[question.author], authedUser)
             : null
     }
+};
+
+DashboardCard.propTypes = {
+    id: PropTypes.string.isRequired
 };
 
 export default connect(mapStateToProps)(DashboardCard);

@@ -28,7 +28,7 @@ export function addUser(user) {
 }
 
 export const handleAddUser = (name, password) => {
-    return (dispatch, getState) => {
+    return (dispatch) => {
         dispatch(showLoading());
 
         return addNewUser({

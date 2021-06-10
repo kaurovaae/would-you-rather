@@ -114,7 +114,7 @@ class RegisterForm extends Component {
     }
 }
 
-const mapStateToProps = ({error, loadingBar}) => {
+const mapStateToProps = ({loadingBar}) => {
     return {
         loading: loadingBar.default === 1
     }
