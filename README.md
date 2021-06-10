@@ -97,13 +97,15 @@ Your code will talk to the database via 4 methods:
 
 5) `_checkPassword(object)` Method
 
-*Description*: Check user's password. Returns `true` if user exists and password is correct and `false` in other cases.
+*Description*: Check user's password.
 *Parameters*: Object that contains the following properties: `login` and `password`. More details about these properties:
 
 | Attribute | Type | Description |
 |-----------------|------------------|-------------------|
 | login | String | The name of the user|
 | password | String | The password of the user|
+
+*Return Value*: `true` if user exists and password is correct and `false` in other cases.
 
 6) `_addNewUser(object)` Method
 
@@ -114,6 +116,16 @@ Your code will talk to the database via 4 methods:
 |-----------------|------------------|-------------------|
 | name | String | The name of the user|
 | password | String | The password of the user|
+
+*Return Value*: An object that has the following properties: `id`, `author`, `optionOne`, `optionTwo`, `timestamp`. More details about these properties:
+
+| Attribute | Type | Description |
+|-----------------|------------------|-------------------|
+| id | String | The id of the user|
+| name | String | The name of the user|
+| avatarURL | String | The path to default image|
+| answers | Object | An empty object|
+| questions | Array | An empty array|
 
 ### Test data
 Passwords for users:
