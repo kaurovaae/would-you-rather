@@ -46,12 +46,14 @@ Voting options are attached to questions. They include:
 | votes             | Array | A list that contains the id of each user who voted for that option|
 | text                | String | The text of the option |
 
-Your code will talk to the database via 4 methods:
+Your code will talk to the database via 6 methods:
 
 * `_getUsers()`
 * `_getQuestions()`
 * `_saveQuestion(question)`
 * `_saveQuestionAnswer(object)`
+* `_checkPassword(object)`
+* `_addNewUser(object)`
 
 1) `_getUsers()` Method
 
