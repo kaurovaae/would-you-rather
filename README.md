@@ -127,7 +127,7 @@ Your code will talk to the database via 6 methods:
 | name | String | The name of the user|
 | password | String | The password of the user|
 
-*Return Value*: An object that has the following properties: `id`, `author`, `optionOne`, `optionTwo`, `timestamp`. More details about these properties:
+*Return Value*: An object that has the following properties: `id`, `name`, `avatarURL`, `answers`, `questions`. More details about these properties:
 
 | Attribute | Type | Description |
 |-----------------|------------------|-------------------|
