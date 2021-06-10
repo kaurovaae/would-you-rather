@@ -112,7 +112,7 @@ Your code will talk to the database via 6 methods:
 
 | Attribute | Type | Description |
 |-----------------|------------------|-------------------|
-| login | String | The name of the user|
+| id | String | The id of the user|
 | password | String | The password of the user|
 
 *Return Value*: `true` if user exists and password is correct and `false` in other cases.
