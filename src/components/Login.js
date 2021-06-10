@@ -57,15 +57,23 @@ class Login extends Component {
                     {step === STEP.LOGIN && (
                         <div className="login-content">
                             <LoginForm />
-                            <span>New to WYR? </span>
-                            <button onClick={this.handleRegister}>Create new account</button>
+                            <div className="change-step">
+                                <span>New to WYR? </span>
+                                <a className="link" onClick={this.handleRegister}>
+                                    Create new account
+                                </a>
+                            </div>
                         </div>
                     )}
                     {step === STEP.REGISTRATION && (
                         <div className="login-content">
                             <RegisterForm />
-                            <span>Already have an account?</span>
-                            <button onClick={this.handleLogin}>Sign in</button>
+                            <div className="change-step">
+                                <span>Already have an account?</span>
+                                <a className="link" onClick={this.handleLogin}>
+                                    Sign in
+                                </a>
+                            </div>
                         </div>
                     )}
                 </div>

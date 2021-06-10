@@ -436,3 +436,18 @@ hr {
     color: rgba(172, 5, 20, 0.95);
     margin: 16px 0;
 }
+
+.link {
+    color: #00b6e8;
+    cursor: pointer;
+}
+
+.link:hover {
+    text-decoration: underline;
+}
+
+.change-step {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 24px;
+}

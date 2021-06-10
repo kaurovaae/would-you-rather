@@ -94,3 +94,29 @@ Your code will talk to the database via 4 methods:
 | authedUser | String | The id of the user who answered the question|
 | qid | String | The id of the question that was answered|
 | answer | String | The option the user selected. The value should be either `"optionOne"` or `"optionTwo"`|
+
+6) `_checkPassword(object)` Method
+
+*Description*: Check user's password. Returns `true` if user exists and password is correct and `false` in other cases.
+*Parameters*: Object that contains the following properties: `login` and `password`. More details about these properties:
+
+| Attribute | Type | Description |
+|-----------------|------------------|-------------------|
+| login | String | The name of the user|
+| password | String | The password of the user|
+
+5) `_addNewUser(object)` Method
+
+*Description*: Add new user in the database.
+*Parameters*: Object that contains the following properties: `name` and `password`. More details about these properties:
+
+| Attribute | Type | Description |
+|-----------------|------------------|-------------------|
+| name | String | The name of the user|
+| password | String | The password of the user|
+
+### Test data
+Passwords for users:
+- Sarah Edo: sepass
+- Tyler McGinnis: tmgpass
+- John Doe: jdpass
