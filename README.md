@@ -95,7 +95,7 @@ Your code will talk to the database via 4 methods:
 | qid | String | The id of the question that was answered|
 | answer | String | The option the user selected. The value should be either `"optionOne"` or `"optionTwo"`|
 
-6) `_checkPassword(object)` Method
+5) `_checkPassword(object)` Method
 
 *Description*: Check user's password. Returns `true` if user exists and password is correct and `false` in other cases.
 *Parameters*: Object that contains the following properties: `login` and `password`. More details about these properties:
@@ -105,7 +105,7 @@ Your code will talk to the database via 4 methods:
 | login | String | The name of the user|
 | password | String | The password of the user|
 
-5) `_addNewUser(object)` Method
+6) `_addNewUser(object)` Method
 
 *Description*: Add new user in the database.
 *Parameters*: Object that contains the following properties: `name` and `password`. More details about these properties:
