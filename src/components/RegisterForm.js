@@ -59,9 +59,13 @@ class RegisterForm extends Component {
 
     render() {
         const {name, password, repeatPassword, step} = this.state;
-        const {error, loading} = this.props;
+        const {loading} = this.props;
 
         const isLoginStep = step === STEP.LOGIN;
+        const disabled = loading
+            || (!isLoginStep && password === '')
+            || (isLoginStep && name === '')
+            || password !== repeatPassword;
 
         return (
             <form className="login-content" onSubmit={isLoginStep ? this.handleLogin : this.handleSubmit}>
@@ -100,11 +104,10 @@ class RegisterForm extends Component {
                 <button
                     className="btn"
                     type="submit"
-                    disabled={(!isLoginStep && password === '') || (isLoginStep && name === '') || loading || password !== repeatPassword}
+                    disabled={disabled}
                 >
                     Continue
                 </button>
-                <div className="error">{error}</div>
             </form>
         )
     }
@@ -112,7 +115,6 @@ class RegisterForm extends Component {
 
 const mapStateToProps = ({error, loadingBar}) => {
     return {
-        error,
         loading: loadingBar.default === 1
     }
 };
