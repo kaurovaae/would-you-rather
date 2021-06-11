@@ -142,3 +142,10 @@ Passwords for users:
 - Sarah Edo: sepass
 - Tyler McGinnis: tmgpass
 - John Doe: jdpass
+
+### Fast start
+Clone the repository: `git clone https://https://github.com/AnitaChess/would-you-rather.git`
+
+In the project directory, you can run:
+- `npm install` (install dependencies)
+- `npm start` (launch the project)
