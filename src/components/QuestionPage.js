@@ -107,7 +107,7 @@ class QuestionPage extends Component {
 
         return (
             <QuestionCard
-                title={`${name} asks:`}
+                title={hasAnswered ? `Asked by ${name}` : `${name} asks:`}
                 avatarUrl={avatarURL}
             >
                 {content}
